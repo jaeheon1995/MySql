@@ -10,7 +10,7 @@ CREATE DATABASE practice_sql;
 USE practice_sql;
 
 -- 테이블 생성
-CREATE TABLE exaple_table (
+CREATE TABLE example_table (
 	example_column1 INT, 
     example_column2 BOOLEAN
 );
@@ -37,9 +37,46 @@ CREATE TABLE data_type (
 
 -- 사용자 생성
 -- CREATE USER '사용자명''@''접속ip' IDENTIGIED BY '비밀번호';
-CREATE USER 'developer''@''127.0.0.1' identified BY 'p!ssw0rd';
+CREATE USER 'developer'@'127.0.0.1' identified BY 'p!ssw0rd';
 
-CREATE USER 'deverloper''@''%' identified by 'p!ssw0rd';
+CREATE USER 'deverloper'@'%' identified by 'p!ssw0rd';
+
+-- drop : 데이터 구조(스키마)를 삭제하는 명령어
+-- drop 스키마명
+
+-- 사용자 삭제
+drop user 'deverloper'@'%';
+
+-- 테이블 삭제
+-- 해당테이블을 참조하고 있는 다른테이블이 존재하면 테이블 삭제 불가
+DROP table exaple_table;
+
+-- 데이터베이스 삭제
+drop database practice_sql;
+
+-- alter : 구조를 변경하는 명령어
+-- 테이블의 컬럼 추가
+alter table example_table 
+ADD example_coloumn3 varchar(10);
+
+-- 테이블 컬럼 삭제
+alter table example_table
+Drop column example_coloumn3;
+
+-- 테이블 컬럼 타입수정
+alter table example_table
+modify column example_column2 TEXT;
+
+-- 테이블 컬럼 전체수정
+alter table example_table
+change example_column1 column1 varchar(20);
+
+-- 데이터베이스 문자셋 수정
+alter database practice_sql default character set utf8;
+
+ 
+
+
 
 
 
