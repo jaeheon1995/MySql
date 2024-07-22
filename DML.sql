@@ -71,3 +71,14 @@ truncate table auto_table;
 -- drop table : DDL 테이블구조전체를 제거함
 -- truncate table: DDL 테이블 구조만 남기고 형태를 초기화
 -- delete from : DML 테이블 레코드만 제거
+
+-- insert into select : 삽입 작업시에 조회 결과를 사용하여 삽입
+insert into example_table
+select * from example_table where column1 is null;
+
+select * from example_table;
+
+-- update select : 수정 작업시 조회결과를 사용하여 수정
+update example_table A set A.column1 = (select B.number 
+from auto_table B
+where B.inx = 1);
