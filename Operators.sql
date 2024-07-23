@@ -86,3 +86,62 @@ where (transaction_number % 3) = 1;
 update transaction set complete = false
 where (transaction_number % 3) = 2;
 select * from transaction;
+
+update transaction set note = null
+where  transaction_number = 6;
+select * from transaction;
+
+-- <=> : 좌항과 우항이 모두 null 이면 true
+select * from transaction where note <=> complete;
+
+-- is :좌항이 우항과 같으면 true  (키워드)
+-- is not : 좌항이 우항과 다르면 true (키워드)
+
+select * from transaction  where complete is true;
+select * from transaction where complete is null;
+select * from transaction where complete is not null;
+select * from transaction where complete is not true;
+
+-- between a and b : 좌항이 a보다 크거나 같으면서 b보다 작거나 같으면 true
+--  not between a and b : 좌항이 a보다 작거나 b보다 크면 true
+select * from transaction where transaction_date between '2024-07-15' and '2024-07-20';
+select * from transaction where transaction_date not between '2024-07-15' and '2024-07-20';
+
+-- in() : 주어진 각 리스트 중 하나라도 일치하면 true
+-- not in(): 주어진 리스트 중 하나도 일치하지 않을때 true
+
+select * from transaction where breakdown in('노트북', '책상');
+
+-- 논리연산자 
+-- and (&&) : 좌항과 우항이 모두true 일때 true
+select * from transaction where transaction_type ='판매' and amount >= 1500000;
+
+-- or (||) : 좌항과 우항중 하나라도 true 일때 true
+select * from transaction where transaction_date >= '2024-07-15' or transaction_type = '판매';
+
+-- xor : 좌항과 우항이 서로 다르면 true
+select * from transaction where transaction_date >= '2024-07-15' xor transaction_type = '판매';
+
+-- like 연산자 :  문자열을 패턴을 기준으로 비교하고자 할 때 사용
+-- % : 임의의 개수(0~무한대) 의 문자 표현
+-- _ : 임의의 한 개 문자 표현
+
+select * from transaction where transaction_date like '2024-07-%';
+select * from transaction where transaction_date like '2024-07-__';
+select * from transaction where breakdown like '의%';
+select * from transaction where transaction_date like '%-10';
+select * from transaction where transaction_date like '2024-__-13';
+
+-- 정령
+-- order by : 조회결과를 특정 컬럼 기준으로 정렬하는 방법 
+-- asc : 오름차순 / desc: 내림차순
+select * from transaction order by amount asc;
+select * from transaction order by amount desc;
+
+select * from transaction order by tax;
+select * from transaction order by tax, amount desc;
+
+-- 중복제거 
+-- distinct : select 결과 테이블에서 컬럼의 조합의 중복을 제거하여 출력
+select distinct breakdown from transaction;
+select distinct breakdown, amount from transaction;
