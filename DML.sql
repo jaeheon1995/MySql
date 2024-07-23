@@ -79,6 +79,5 @@ select * from example_table where column1 is null;
 select * from example_table;
 
 -- update select : 수정 작업시 조회결과를 사용하여 수정
-update example_table A set A.column1 = (select B.number 
-from auto_table B
+update example_table A set A.column1 = (select B.number from auto_table B
 where B.inx = 1);
