@@ -85,7 +85,7 @@ select
     contents,
     reply
 from board 
-where receipt_number = 1;
+where receipt_number = 8;
 
 -- 답글작성
 update board set reply = '반갑습니다', status = true
@@ -96,4 +96,4 @@ update board set title = '게시물수정', contents = '안녕'
 where receipt_number = 1;
 
 -- 게시물삭제
-delete from board where receipt_number = 4;
+delete from board where receipt_number = 7;
