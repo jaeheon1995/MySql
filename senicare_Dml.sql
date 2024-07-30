@@ -145,12 +145,12 @@ UPDATE goods SET count = count - 2 WHERE goods_number = 1;
 -- 수정을 하려고 하는 레코드가 존재하는지 확인
 SELECT * FROM customer WHERE customer_number = 1;
 -- 레코드 수정시 담당자 관계 확인
-SELECT * FROM nurse WHERE id = 1;
+SELECT * FROM nurse WHERE id = 'qwer1234';
 
 UPDATE customer SET 
     profile_image = 'http:///~~~',
     name = '고길동',
     birth = '590830',
-    charger = 1,
+    charger = 'qwer1234',
     address = '부산광역시 부산진구...'
 WHERE customer_number = 1;
